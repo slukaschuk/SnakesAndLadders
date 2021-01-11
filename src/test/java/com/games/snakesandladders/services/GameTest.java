@@ -1,33 +1,24 @@
 package com.games.snakesandladders.services;
 
+import com.games.snakesandladders.models.Player;
 import org.junit.Assert;
+import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class GameTest {
 
-    @Mock
-    private Player firstPlayer;
+    private Game game = new Game();
 
-    @Mock
-    private Token token;
-
-    @InjectMocks
-    private Game game;
-
+    @Test
     public void shouldReturnStartedPositionWhenPlayerAddedToGame() {
-        when(game.addPlayer()).thenReturn(firstPlayer);
-        when(firstPlayer.getToken()).thenReturn(token);
-        int expectedResult = 0;
+        Player player = game.addPlayer();
+        int expectedResult = 1;
 
-        int tokenPosition = token.getPositionOnBoard();
+        int tokenPosition = player.getToken().getPosition();
 
         Assert.assertEquals(expectedResult, tokenPosition);
     }
