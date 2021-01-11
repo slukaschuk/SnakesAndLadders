@@ -1,17 +1,17 @@
 package com.games.snakesandladders.services;
 
 import com.games.snakesandladders.models.Player;
-import com.games.snakesandladders.models.Token;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class Game {
 
+    @Autowired
+    PlayerFactory playerFactory;
+
     public Player addPlayer() {
-        Token token = new Token();
-        Player addedPlayer = new Player();
-        addedPlayer.setToken(token);
-        return addedPlayer;
+        return playerFactory.createPlayer();
     }
 
 }
