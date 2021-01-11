@@ -1,22 +1,30 @@
 package com.games.snakesandladders.models;
 
 import com.games.snakesandladders.services.Dice;
-import com.games.snakesandladders.services.HexDice;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
+@RunWith(MockitoJUnitRunner.class)
+@SpringBootTest
 public class PlayerTest {
 
     private static final int START_POSITION = 1;
 
-    private final Token token = new Token();
+    private Token token = new Token();
 
-    private final Player player = new Player();
+    @InjectMocks
+    private Player player;
 
-    private final Dice dice = new HexDice();
+    @Mock
+    private Dice dice;
 
     @Before
     public void setUp() {
