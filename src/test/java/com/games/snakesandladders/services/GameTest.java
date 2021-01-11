@@ -1,5 +1,6 @@
 package com.games.snakesandladders.services;
 
+import com.games.snakesandladders.models.MoveStatus;
 import com.games.snakesandladders.models.Player;
 import com.games.snakesandladders.models.Token;
 import org.junit.Assert;
@@ -11,6 +12,8 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -25,8 +28,6 @@ public class GameTest {
     private Player player;
     @Mock
     private Token token;
-    @Mock
-    private Dice dice;
 
     @InjectMocks
     private Game game;
@@ -35,7 +36,6 @@ public class GameTest {
     public void setUp() {
         when(playerFactory.createPlayer()).thenReturn(player);
         when(player.getToken()).thenReturn(token);
-
     }
 
     @Test
@@ -51,15 +51,12 @@ public class GameTest {
 
     @Test
     public void playerMustWinWhenHeReachesTheFinalSquare() {
-        when(token.getPosition()).thenReturn(97);
         int resultOfDiceRoll = 3;
-        when(dice.roll()).thenReturn(resultOfDiceRoll);
-        player.roll();
+        when(progressChecker.checkMove(any(), anyInt())).thenReturn(MoveStatus.WIN);
 
-        MoveStatus moveStatus = progressChecker.checkMove(player, resultOfDiceRoll);
+        MoveStatus moveStatus = game.checkMoveStatus(player, resultOfDiceRoll);
 
         Assert.assertEquals(MoveStatus.WIN, moveStatus);
-
     }
 
 }
