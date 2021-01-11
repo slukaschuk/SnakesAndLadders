@@ -1,9 +1,12 @@
 package com.games.snakesandladders.models;
 
+import com.games.snakesandladders.services.Dice;
+import com.games.snakesandladders.services.HexDice;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
 
 public class PlayerTest {
 
@@ -12,6 +15,8 @@ public class PlayerTest {
     private final Token token = new Token();
 
     private final Player player = new Player();
+
+    private final Dice dice = new HexDice();
 
     @Before
     public void setUp() {
@@ -35,6 +40,18 @@ public class PlayerTest {
 
         player.moveToken(3);
         player.moveToken(4);
+
+        int result = token.getPosition();
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void shouldMoveFourSpacesWhenRollIsFour() {
+        int expectedResult = 5;
+        when(dice.roll()).thenReturn(4);
+
+        Integer dieRoll = player.roll();
+        player.moveToken(dieRoll);
 
         int result = token.getPosition();
         assertEquals(expectedResult, result);
