@@ -7,11 +7,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class Game {
 
-    @Autowired
     PlayerFactory playerFactory;
 
     public Player addPlayer() {
         return playerFactory.createPlayer();
     }
 
+    @Autowired
+    public void setPlayerFactory(PlayerFactory playerFactory) {
+        this.playerFactory = playerFactory;
+    }
 }
