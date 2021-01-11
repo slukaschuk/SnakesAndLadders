@@ -16,8 +16,9 @@ public class DiceTest {
     public void shouldReturnBetweenOneAndSixWhenRoll() {
         Integer result = dice.roll();
 
-        assertTrue("The result is too high", result > MAX_VALUE);
-        assertTrue("The result is too low",  result < MIN_VALUE);
+        System.out.println(result);
+        assertTrue("The result is too high", result <= MAX_VALUE);
+        assertTrue("The result is too low",  result >= MIN_VALUE);
     }
 
 }
