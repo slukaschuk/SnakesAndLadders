@@ -13,7 +13,7 @@ public class GameProgressChecker implements ProgressChecker {
 
     @Override
     public MoveStatus checkMove(Player player, int numberOfMoves) {
-        MoveStatus status = CAN_MOVE;
+        MoveStatus status = CANNOT_MOVE;
         int tokenPosition = player.getToken().getPosition();
         if (tokenPosition + numberOfMoves == BOARD_SIZE) {
             status = WIN;

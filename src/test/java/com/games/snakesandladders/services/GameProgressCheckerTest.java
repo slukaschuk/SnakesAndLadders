@@ -50,7 +50,7 @@ class GameProgressCheckerTest {
 
         MoveStatus moveStatus = progressChecker.checkMove(player, resultOfDiceRoll);
 
-        assertEquals(MoveStatus.CAN_MOVE, moveStatus);
+        assertEquals(MoveStatus.CANNOT_MOVE, moveStatus);
     }
 
 }
