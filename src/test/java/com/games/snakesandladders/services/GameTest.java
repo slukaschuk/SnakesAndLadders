@@ -68,8 +68,8 @@ public class GameTest {
     @Test
     public void shouldGetFourWhenMovedThree() {
         int expectedResult = 4;
-
-        game.moveToken(player, 3);
+        when(dice.roll()).thenReturn(3);
+        game.moveToken(player);
         int result = token.getPosition();
 
         assertEquals(expectedResult, result);
@@ -78,9 +78,9 @@ public class GameTest {
     @Test
     public void shouldGetEightWhenMovedThreeAndFour() {
         int expectedResult = 8;
-
-        game.moveToken(player, 3);
-        game.moveToken(player, 4);
+        when(dice.roll()).thenReturn(3, 4);
+        game.moveToken(player);
+        game.moveToken(player);
 
         int result = token.getPosition();
         assertEquals(expectedResult, result);
@@ -92,7 +92,7 @@ public class GameTest {
         when(dice.roll()).thenReturn(4);
 
         Integer dieRoll = dice.roll();
-        game.moveToken(player, dieRoll);
+        game.moveToken(player);
 
         int result = token.getPosition();
         assertEquals(expectedResult, result);
