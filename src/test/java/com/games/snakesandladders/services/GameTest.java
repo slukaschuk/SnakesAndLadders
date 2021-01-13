@@ -12,6 +12,7 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
@@ -26,8 +27,10 @@ public class GameTest {
     private ProgressChecker progressChecker;
     @Mock
     private Player player;
+
+    private Token token = new Token();
     @Mock
-    private Token token;
+    private Dice dice;
 
     @InjectMocks
     private Game game;
@@ -36,6 +39,7 @@ public class GameTest {
     public void setUp() {
         when(playerFactory.createPlayer()).thenReturn(player);
         when(player.getToken()).thenReturn(token);
+        player.setToken(token);
     }
 
     @Test
@@ -57,6 +61,39 @@ public class GameTest {
         MoveStatus moveStatus = game.checkMoveStatus(player, resultOfDiceRoll);
 
         Assert.assertEquals(MoveStatus.WIN, moveStatus);
+    }
+
+    @Test
+    public void shouldGetFourWhenMovedThree() {
+        int expectedResult = 4;
+
+        player.moveToken(3);
+        int result = token.getPosition();
+
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void shouldGetEightWhenMovedThreeAndFour() {
+        int expectedResult = 8;
+
+        player.moveToken(3);
+        player.moveToken(4);
+
+        int result = token.getPosition();
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void shouldMoveFourSpacesWhenRollIsFour() {
+        int expectedResult = 5;
+        when(dice.roll()).thenReturn(4);
+
+        Integer dieRoll = dice.roll();
+        player.moveToken(dieRoll);
+
+        int result = token.getPosition();
+        assertEquals(expectedResult, result);
     }
 
 }
