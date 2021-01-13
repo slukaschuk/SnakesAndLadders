@@ -1,7 +1,10 @@
 package com.games.snakesandladders.services;
 
+import org.springframework.stereotype.Service;
+
 import java.util.Random;
 
+@Service
 public class HexDice implements Dice {
 
     private final static Integer MIN_VALUE = 1;
