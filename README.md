@@ -20,7 +20,11 @@ The Content-Type of request should be "application/json".
 In the request body, you need to pass the player's model, indicating his token position for example
 
 {
+"data": {
+"player": {
 "token": {
-"position" : 95
+"position": 95
+}
+}
 }
 }

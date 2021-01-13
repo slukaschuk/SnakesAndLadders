@@ -1,5 +1,7 @@
 package com.games.snakesandladders.controllers;
 
+import com.games.snakesandladders.models.JsonApiPlayerData;
+import com.games.snakesandladders.models.JsonApiPlayerPayload;
 import com.games.snakesandladders.models.Player;
 import com.games.snakesandladders.services.Game;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +18,8 @@ public class GameController {
     private Game game;
 
     @PostMapping("/player")
-    public Player makePlayerMove(@RequestBody Player player) {
-        return game.moveToken(player);
+    public JsonApiPlayerPayload makePlayerMove(@RequestBody JsonApiPlayerPayload jsonApiPlayerPayload) {
+        Player player = jsonApiPlayerPayload.getData().getPlayer();
+        return new JsonApiPlayerPayload(new JsonApiPlayerData(game.moveToken(player)));
     }
 }
