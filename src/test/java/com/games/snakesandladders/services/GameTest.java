@@ -69,6 +69,7 @@ public class GameTest {
     public void shouldGetFourWhenMovedThree() {
         int expectedResult = 4;
         when(dice.roll()).thenReturn(3);
+        when(progressChecker.checkMove(any(), anyInt())).thenReturn(MoveStatus.MOVE);
         game.moveToken(player);
         int result = token.getPosition();
 
@@ -79,6 +80,7 @@ public class GameTest {
     public void shouldGetEightWhenMovedThreeAndFour() {
         int expectedResult = 8;
         when(dice.roll()).thenReturn(3, 4);
+        when(progressChecker.checkMove(any(), anyInt())).thenReturn(MoveStatus.MOVE);
         game.moveToken(player);
         game.moveToken(player);
 
@@ -89,9 +91,9 @@ public class GameTest {
     @Test
     public void shouldMoveFourSpacesWhenRollIsFour() {
         int expectedResult = 5;
+        when(progressChecker.checkMove(any(), anyInt())).thenReturn(MoveStatus.MOVE);
         when(dice.roll()).thenReturn(4);
 
-        Integer dieRoll = dice.roll();
         game.moveToken(player);
 
         int result = token.getPosition();

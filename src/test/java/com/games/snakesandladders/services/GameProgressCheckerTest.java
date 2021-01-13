@@ -51,4 +51,16 @@ class GameProgressCheckerTest {
         assertEquals(MoveStatus.CANNOT_MOVE, moveStatus);
     }
 
+    @Test
+    public void playerShouldMoveOnWhenHeDoesNotExceedsTheBoardLimit() {
+        when(player.getToken()).thenReturn(token);
+        when(token.getPosition()).thenReturn(5);
+        int resultOfDiceRoll = 4;
+        when(dice.roll()).thenReturn(resultOfDiceRoll);
+
+        MoveStatus moveStatus = progressChecker.checkMove(player, resultOfDiceRoll);
+
+        assertEquals(MoveStatus.MOVE, moveStatus);
+    }
+
 }
