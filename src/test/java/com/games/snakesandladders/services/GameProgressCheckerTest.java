@@ -34,7 +34,6 @@ class GameProgressCheckerTest {
         int resultOfDiceRoll = 3;
         when(dice.roll()).thenReturn(resultOfDiceRoll);
 
-        player.roll();
         MoveStatus moveStatus = progressChecker.checkMove(player, resultOfDiceRoll);
 
         assertEquals(MoveStatus.WIN, moveStatus);
@@ -46,7 +45,6 @@ class GameProgressCheckerTest {
         when(token.getPosition()).thenReturn(97);
         int resultOfDiceRoll = 4;
         when(dice.roll()).thenReturn(resultOfDiceRoll);
-        player.roll();
 
         MoveStatus moveStatus = progressChecker.checkMove(player, resultOfDiceRoll);
 
