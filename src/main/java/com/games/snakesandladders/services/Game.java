@@ -30,4 +30,9 @@ public class Game {
         return progressChecker.checkMove(player, numberOfMoves);
     }
 
+    public Player moveToken(Player player, int numberOfMoves) {
+        int currentPosition = player.getToken().getPosition();
+        player.getToken().setPosition(currentPosition + numberOfMoves);
+        return player;
+    }
 }

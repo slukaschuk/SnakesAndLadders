@@ -21,6 +21,8 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class GameTest {
 
+    private static final  int START_POSITION = 1;
+
     @Mock
     private PlayerFactory playerFactory;
     @Mock
@@ -40,12 +42,12 @@ public class GameTest {
         when(playerFactory.createPlayer()).thenReturn(player);
         when(player.getToken()).thenReturn(token);
         player.setToken(token);
+        token.setPosition(START_POSITION);
     }
 
     @Test
     public void shouldReturnStartedPositionWhenPlayerAddedToGame() {
         Player player = game.addPlayer();
-        when(token.getPosition()).thenReturn(1);
         int expectedResult = 1;
 
         int tokenPosition = player.getToken().getPosition();
@@ -78,7 +80,7 @@ public class GameTest {
         int expectedResult = 8;
 
         game.moveToken(player, 3);
-        game.moveToken(player, 3);
+        game.moveToken(player, 4);
 
         int result = token.getPosition();
         assertEquals(expectedResult, result);

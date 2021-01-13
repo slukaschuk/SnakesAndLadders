@@ -12,9 +12,4 @@ public class Player {
         this.token = token;
     }
 
-    public void moveToken(int spaces) {
-        int currentPosition = token.getPosition();
-        token.setPosition(currentPosition + spaces);
-    }
-
 }
