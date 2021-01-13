@@ -1,20 +1,20 @@
 package com.games.snakesandladders.models;
 
 public class JsonApiPlayerData {
-    public Player player;
+    public Player attributes;
 
     public JsonApiPlayerData() {
     }
 
-    public JsonApiPlayerData(Player player) {
-        this.player = player;
+    public JsonApiPlayerData(Player attributes) {
+        this.attributes = attributes;
     }
 
-    public Player getPlayer() {
-        return player;
+    public Player getAttributes() {
+        return attributes;
     }
 
-    public void setPlayer(Player player) {
-        this.player = player;
+    public void setAttributes(Player attributes) {
+        this.attributes = attributes;
     }
 }

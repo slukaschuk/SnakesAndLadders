@@ -21,9 +21,9 @@ In the request body, you need to pass the player's model, indicating his token p
 
 {
 "data": {
-"player": {
+"attributes": {
 "token": {
-"position": 95
+"position" : 95
 }
 }
 }

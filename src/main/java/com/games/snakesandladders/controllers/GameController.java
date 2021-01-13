@@ -19,7 +19,7 @@ public class GameController {
 
     @PostMapping("/player")
     public JsonApiPlayerPayload makePlayerMove(@RequestBody JsonApiPlayerPayload jsonApiPlayerPayload) {
-        Player player = jsonApiPlayerPayload.getData().getPlayer();
+        Player player = jsonApiPlayerPayload.getData().getAttributes();
         return new JsonApiPlayerPayload(new JsonApiPlayerData(game.moveToken(player)));
     }
 }
