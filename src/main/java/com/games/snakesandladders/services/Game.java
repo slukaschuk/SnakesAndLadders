@@ -29,4 +29,5 @@ public class Game {
     public MoveStatus checkMoveStatus(Player player, int numberOfMoves) {
         return progressChecker.checkMove(player, numberOfMoves);
     }
+
 }
