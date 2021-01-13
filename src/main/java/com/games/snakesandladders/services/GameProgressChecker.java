@@ -17,6 +17,8 @@ public class GameProgressChecker implements ProgressChecker {
         int tokenPosition = player.getToken().getPosition();
         if (tokenPosition + numberOfMoves == BOARD_SIZE) {
             status = WIN;
+        } else if (tokenPosition + numberOfMoves < BOARD_SIZE) {
+            status = MOVE;
         }
 
         return  status;
